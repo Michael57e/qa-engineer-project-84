@@ -38,7 +38,7 @@ test-cases:
 
 
 bugreports:
-  - summary: | # 2
+- summary: | # 2
     Баг списка категорий товаров
   environment: |
     Chromium  135.0.7049.84 (Official Build) snap (64-bit)
@@ -74,7 +74,7 @@ bugreports:
   environment: |
     Chromium  135.0.7049.84 (Official Build) snap (64-bit)
     OS Ubuntu 24.04.2 LTS
-   steps-to-reproduce: |
+  steps-to-reproduce: |
     1. В корзине есть 2 или более товаров
     2. Зайти в корзину "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/cart"
     3. На карточке произвольного товара нажать на кнопку "Удалить"
