@@ -92,7 +92,7 @@ bugreports:
       OS Android
       Samsung Galaxy A51/71
     steps-to-reproduce: |
-      1. Зайти на страницу магазина через смартфон "https://products-store-git-v2bugfixes-hexlet-components.vercel.app"
+      1. Зайти на страницу магазина через смартфон https://products-store-git-v2bugfixes-hexlet-components.vercel.app
       2. Визуально проверить расположение элементов страницы и корректность их отображения
     expected-result: |
       Сайт корректно отображается на мобильном устройстве
