@@ -35,6 +35,8 @@ test-cases:
 - summary: | # 9
     Сайт совместим с последними версиями браузеров
   status: pass
+
+
 ---
 bugreports:
   - summary: | # 2
