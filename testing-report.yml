@@ -45,8 +45,6 @@
 
 - summary: | # 12
     Верстка корзины
-  requirement: |
-    Корзина с товарами сверстана корректно
   status: fail
 
 - summary: | # 13
