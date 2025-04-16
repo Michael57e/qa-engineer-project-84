@@ -1,37 +1,74 @@
 ---
 - summary: | # 1
-    Поиск товара по ключевому слову
+    Вход на сайт
   status: pass
 
 - summary: | # 2
+    Верстка главной страницы
+  status: pass
+
+- summary: | # 3
+    Верстка в узком окне
+  status: fail
+
+- summary: | # 4
+    Работа кнопок переключения страниц с товарами
+  status: fail
+
+- summary: | # 5
+    Переключение языка интерфейса
+  status: fail  
+
+- summary: | # 6
+    Поиск товара по ключевому слову
+  status: pass
+
+- summary: | # 7
     Поиск товара по категории
   status: fail
 
-- summary: | # 3
+- summary: | # 8
     Поиск товара при помощи фильтров
   status: fail
     
-- summary: | # 4
+- summary: | # 9
+    Адаптивность фильтров
+  status: fail
+
+- summary: | # 10
     Просмотр товаров и просмотр подробной информации о товаре
   status: pass
 
-- summary: | # 5
+- summary: | # 11
+    Отображение элементов корзины
+  status: fail
+
+- summary: | # 12
+    Верстка корзины
+  requirement: |
+    Корзина с товарами сверстана корректно
+  status: fail
+
+- summary: | # 13
     Добавление товаров в корзину и просмотр содержимого корзины
   status: pass
 
-- summary: | # 6
+- summary: | # 14
     Удаление товаров из корзины
   status: fail
 
-- summary: | # 7
+- summary: | # 15
+    Оформление заказа
+  status: fail
+
+- summary: | # 16
     Поля ввода на сайте защищены от веб-атак
   status: pass
 
-- summary: | # 8
+- summary: | # 17
     Сайт имеет мобильную версию
   status: fail
 
-- summary: | # 9
+- summary: | # 18
     Сайт совместим с последними версиями браузеров
   status: pass
-
