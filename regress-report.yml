@@ -1,101 +1,229 @@
 ---
-test-cases:
 - summary: | # 1
-    Поиск товара по ключевому слову
+    Вход на сайт
   status: pass
 
 - summary: | # 2
+    Верстка главной страницы
+  status: pass
+
+- summary: | # 3
+    Верстка в узком окне
+  status: fail
+
+- summary: | # 4
+    Работа кнопок переключения страниц с товарами
+  status: fail
+
+- summary: | # 5
+    Переключение языка интерфейса
+  status: fail  
+
+- summary: | # 6
+    Поиск товара по ключевому слову
+  status: pass
+
+- summary: | # 7
     Поиск товара по категории
   status: fail
 
-- summary: | # 3
+- summary: | # 8
     Поиск товара при помощи фильтров
   status: fail
     
-- summary: | # 4
+- summary: | # 9
+    Адаптивность фильтров
+  status: fail
+
+- summary: | # 10
     Просмотр товаров и просмотр подробной информации о товаре
   status: pass
 
-- summary: | # 5
+- summary: | # 11
+    Отображение элементов корзины
+  status: fail
+
+- summary: | # 12
+    Верстка корзины
+  status: fail
+
+- summary: | # 13
     Добавление товаров в корзину и просмотр содержимого корзины
   status: pass
 
-- summary: | # 6
+- summary: | # 14
     Удаление товаров из корзины
   status: fail
 
-- summary: | # 7
+- summary: | # 15
+    Оформление заказа
+  status: fail
+
+- summary: | # 16
     Поля ввода на сайте защищены от веб-атак
   status: pass
 
-- summary: | # 8
+- summary: | # 17
     Сайт имеет мобильную версию
-  status: fail
+  status: pass
 
-- summary: | # 9
+- summary: | # 18
     Сайт совместим с последними версиями браузеров
   status: pass
 
-bugreports:
-  - summary: | # 2
-      Баг списка категорий товаров
-    environment: |
-      Chromium  135.0.7049.84 (Official Build) snap (64-bit)
-      OS Ubuntu 24.04.2 LTS
-    steps-to-reproduce: |
-      1. Зайти на страницу магазина "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
-      2. Открыть выплывающий список категорий товаров
-      3. Выбрать группу "smartphones"
-    expected-result: |
-      Пользователь должен получить список товаров искомой категории
-    actual-result: |
-      Группа "smartphones" отсутствует в выплывающем списке
-      И группа "smartphones" пропала из магазина в принципе
+  bugreports:
+    - summary: | # 3
+        Баг верстки каточек товаров в узком окне
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: |
+        1. Открыть страницу "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
+        2. Сжать страницу до 1400px в ширину
+        3. Сжать страницу до 1200px в ширину (Ошибка)
+      expected-result: |
+        Верстка подстраивается под изменение ширины экрана
+      actual-result: |
+        Кнопка "В корзину" в карточках товаров выехала за границы карточки
+  
+    - summary: | # 4
+        Баг фильтвов при переключении страниц с товарами  
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: |
+        1. Открыть страницу "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
+        2. Нажать кнопку "Следующая"
+        3. Смотрим меню фильтров (Ошибка)
+      expected-result: |
+        - Отобразились товары, которых не было на предыдущей странице
+        - Фильтры не изменились (категории и производители - без изменений)
+        - Кнопки "Следующая" и "Предыдущая" не пропали
+      actual-result: |
+        Изменился перечень категорий товаров
+        Изменился перечень брендов товаров
+        Кнопки "Следующая" и "Предыдущая" пропали
 
-  - summary: | # 3
-      Баг работы фильтров товаров
-    environment: |
-      Chromium  135.0.7049.84 (Official Build) snap (64-bit)
-      OS Ubuntu 24.04.2 LTS
-    steps-to-reproduce: |
-      1. Зайти на страницу магазина "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
-      2. Нажать на выпадающий список товаров "Категория"
-      3. Выбрать из списка категорию "mens-watches", производитель "Apple", товар "В наличии".
-    expected-result: |
-      Пользователь получил искомый товар в выдаче
-    actual-result: |
-      Группа "mens-watches" отсутствует в магазине
-      Производитель "Apple" отсутствует в магазине
-      Группа и артикул отсутствуют в магазине
+    - summary: | # 5
+        В карточках товаров не меняется язык текста при переключении языка интерфейса. 
+        Все языки в открывающемся списке на латинице
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: | 
+        1. Нажать кнопку "Language"
+        2. В открывшемся списке выбрать "Русский" (Ошибка)
+        3. В открывшемся списке выбрать "Russian"
+        4. Смотрим карточки товаров (Ошибка)
+      expected-result: | 
+        - Все элементы сайта отображаются на выбранном языке
+        - Все карточки товаров, их наименования и описания отображаются на выбранном языке
+      actual-result: |
+        Русский язык написан на английском языке.
+        В карточках товаров наименование и описание товаров не меняется на русский язык
 
-  - summary: | # 6
-      Отсутствует модальное окно при удалении товаров из корзины
-    environment: |
-      Chromium  135.0.7049.84 (Official Build) snap (64-bit)
-      OS Ubuntu 24.04.2 LTS
-    steps-to-reproduce: |
-      1. В корзине есть 2 или более товаров
-      2. Зайти в корзину "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/cart"
-      3. На карточке произвольного товара нажать на кнопку "Удалить"
-      4. Нажать на кнопку "Очистить корзину"
-    expected-result: |
-      После шага 3 появляется модальное окно, запрашивающее подтверждение действия
-      После шага 4 появляется модальное окно, запрашивающее подтверждение действия
-    actual-result: |
-      Товар удаляется сразу после нажатия на соответствующую кнопку
-      Модальное окно не появляется
+    - summary: | # 7
+        В списке категорий товаров нет товаров с других страниц
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: |
+        1. Зайти на страницу магазина "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
+        2. Открыть выплывающий список категорий товаров
+        3. Выбрать группу "smartphones" (Ошибка)
+      expected-result: |
+        Пользователь должен получить список товаров искомой категории
+      actual-result: |
+        Группа "smartphones" отсутствует в выплывающем списке
 
-  - summary: | # 8
-      Баги верстки мобильной версии сайта
-    environment: |
-      Просмотр страницы через DevTools
-      OS Android
-      Samsung Galaxy A51/71
-    steps-to-reproduce: |
-      1. Зайти на страницу магазина "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/" через смартфон
-      2. Визуально проверить расположение элементов страницы и корректность их отображения
-    expected-result: |
-      Сайт корректно отображается на мобильном устройстве
-      Верстка сайта корректная, передает содержание полной версии
-    actual-result: |
-      Расположение элементов некорректно. См файл screenshot_2. Меню фильтров съехало вниз страницы.
+    - summary: | # 8
+        В фильтрах товаров нет товаров с других страниц
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: |
+        1. Зайти на страницу магазина "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
+        2. Нажать на выпадающий список товаров "Категория"
+        3. Выбрать из списка категорию "mens-watches" (Ошибка)
+        4. Поставить галочку в фильтре "Производитель" напротив "Apple" (Ошибка)
+        5. Поставить галочку "В наличии"
+      expected-result: |
+        Пользователь получил искомый товар в выдаче
+      actual-result: |
+        Группа "mens-watches" отсутствует в выплывающем списке
+        Производитель "Apple" отсутствует списке
+
+    - summary: | # 9
+        Адаптивность фильтров 
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: | 
+        1. Открыть страницу "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
+        2. Выбрать категорию "furniture"
+        3. Ошибка
+      expected-result: |
+        Список производителей сократился до производителей категории "furniture"
+      actual-result: | 
+        Список производителей не изменился
+
+    - summary: | # 11
+        Отсутствует бокс с расшифровкой данных товара в корзине
+      environment: | 
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: | 
+        1. Открыть страницу "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/"
+        2. Добавить в корзину товары "Red Lipstick" и "Red Nail Polish"
+        3. Нажать на кнопку "Корзина"
+        4. Найти бокс с расшифровкой данных товара (наименование, количество, цена, цена со скидкой)
+        (Ошибка)
+      expected-result: |
+        - Бокс в наличии
+      actual-result: | 
+        Бокс с расшифровкой данных товара отсутствует
+
+    - summary: | # 12
+        Элементы товаров в корзине не выравнены
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: | 
+        1. Открыть страницу https://hexlet-products-store.vercel.app/
+        2. Добавить в корзину товары "Red Lipstick" и "Red Nail Polish"
+        3. Нажать на кнопку "Корзина"
+        4. Проверить выравнивание элементов товаров в корзине (Ошибка)
+      expected-result: |
+        - Элементы отобразились корректно и выравнены
+      actual-result: | 
+        Цифра количества товаров не выравнена. Кнопка "Удалить" не выравнена
+
+    - summary: | # 14
+        Отсутствует модальное окно при удалении товаров из корзины
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: |
+        1. В корзине есть 2 или более товаров
+        2. Зайти в корзину "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/cart"
+        3. На карточке произвольного товара нажать на кнопку "Удалить"
+        Ошибка
+      expected-result: |
+        После шага 3 появляется модальное окно, запрашивающее подтверждение действия
+      actual-result: |
+        Товар удаляется сразу после нажатия на кнопку "Удалить"
+        Модальное окно не появляется
+
+    - summary: | # 15
+        Ошибка 500 при оформлении заказа
+      environment: |
+        Chromium  135.0.7049.84 (Official Build) snap (64-bit)
+        OS Ubuntu 24.04.2 LTS
+      steps-to-reproduce: |
+        1. В корзину добавлен товар
+        2. Открыть корзину "https://products-store-git-v2bugfixes-hexlet-components.vercel.app/cart"
+        3. Нажать на кнопку "Оформить заказ" (Ошибка)
+      expected-result: | 
+        Заказ оформлен
+      actual-result: | 
+        Ошибка 500
