@@ -4,9 +4,9 @@
   requirement: |
     Пользователь может войти на сайт
   prerequisites: |
-    Адрес сайта https://hexlet-products-store.vercel.app/
+    Сайт создан 
   test-data: |
-    Сайт = https://hexlet-products-store.vercel.app/
+    none
   steps:
     - Зайти на сайт
     - Проверить наличие панели главного меню с кнопками "Магазин", "Корзина", "Язык"
