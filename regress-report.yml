@@ -9,7 +9,7 @@ test-cases:
     status: pass
 
   - summary: | # 3
-      Верстка в узком окне
+      Проверка адаптивности экрана
     status: fail
 
   - summary: | # 4
@@ -227,4 +227,4 @@ bugreports:
     expected-result: | 
       Заказ оформлен
     actual-result: | 
-      Ошибка 500
+      Ошибка 500 (screenshot_4)
